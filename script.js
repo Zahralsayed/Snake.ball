@@ -148,3 +148,33 @@ document.addEventListener ('keydown', handleKeyPress)
 document.addEventListener('DOMContentLoaded', () => {
     start()
 })
+
+/*console.log(snake)
+console.log(ball)*/
+
+
+function getLastDirection(){
+    lastDirection = direction
+    return direction
+}
+
+// to save the hightest score
+function hightScore(){
+
+}
+
+
+
+
+// create ball
+    // grid-row and grid-column will help to position the the ball (css) , in js can added by set position
+       // using math rondom
+
+        // grid-row: 1 / 3  will start at 1 and end at 3rd row
+
+
+// Move snake
+   // for moving i have to do -- and ++ for i and j 
+
+// Increase length 
+// Increase Score */
