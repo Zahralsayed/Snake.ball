@@ -141,3 +141,10 @@ function handleKeyPress(event){
         }
 
     }
+
+// KeyPress event listener
+document.addEventListener ('keydown', handleKeyPress)
+// onload start event listener
+document.addEventListener('DOMContentLoaded', () => {
+    start()
+})
