@@ -1,0 +1,84 @@
+/*body{
+    text-align: center;
+
+}
+
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-size: 50px;
+    margin-top: 5%;
+}
+
+.top{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+#Score{
+    display: flex;
+    border: 1px solid;
+    padding: 0.5%;
+    width: 20%;
+
+
+}
+
+#Length{
+    display: flex;
+    border: 1px solid;
+    padding: 0.5%;
+    width: 24%;
+}
+
+
+.SnakeSpace{
+    margin: 2% 13%;
+    height: 250px;
+    display: grid;
+    position: relative;
+    grid-template-columns:  repeat(20, 1fr);
+    grid-template-rows:  repeat(10, 1fr);
+    background-color: rgb(237, 237, 237);
+    border-radius: 20px;
+}
+
+
+button{
+    margin: 1%;
+    width: 15%;
+    background-color: darkgray;
+    color: white;
+    border: 0;
+    height: 30px;
+
+}
+
+.grid-item{
+    position: absolute;
+    border: 1px solid;
+    box-sizing: border-box;
+    border-radius: 30px;
+
+}
+
+.barrier{
+    background-color: black;
+    border-radius: 10px;
+}
+
+.snake{
+    background-color: rgb(199, 23, 23);
+    border: .25vmin;
+    border-radius: 60%;
+}
+
+.ball{
+    background-color: rgb(223, 223, 53);
+    border: .25vmin;
+    border-radius: 60%;
+
+}
+    */

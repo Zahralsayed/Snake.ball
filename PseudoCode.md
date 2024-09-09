@@ -18,7 +18,7 @@
 
 10. The ball place will change randomly to catch it again!
 
-11. Even when you catch more and more balls, the snake will become longer so make sure to not touch any of frame, barriers and snake body
+11. Even when you catch more and more balls, the snake will become longer so make sure to not touch any frames, barriers and snake body
 
 12. When the Game is Over for any reason of the reasons above, it will directly goes to another page to show your score 
 
