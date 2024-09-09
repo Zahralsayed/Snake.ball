@@ -1,4 +1,4 @@
-/*body{
+body{
     text-align: center;
 
 }
@@ -17,21 +17,6 @@ h1 {
 }
 
 
-#Score{
-    display: flex;
-    border: 1px solid;
-    padding: 0.5%;
-    width: 20%;
-
-
-}
-
-#Length{
-    display: flex;
-    border: 1px solid;
-    padding: 0.5%;
-    width: 24%;
-}
 
 
 .SnakeSpace{
@@ -64,21 +49,3 @@ button{
 
 }
 
-.barrier{
-    background-color: black;
-    border-radius: 10px;
-}
-
-.snake{
-    background-color: rgb(199, 23, 23);
-    border: .25vmin;
-    border-radius: 60%;
-}
-
-.ball{
-    background-color: rgb(223, 223, 53);
-    border: .25vmin;
-    border-radius: 60%;
-
-}
-    */
