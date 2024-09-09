@@ -114,3 +114,30 @@ function draw(SnakeSpace){
     SnakeSpace.appendChild(ballElement)
 }
 
+
+
+// function keyPress
+function handleKeyPress(event){
+    if (Started){
+            switch(event.key){
+                case 'ArrowUp':
+                    if (lastDirection.y !== 0) break // to move up but can not move down as it is
+                    direction = { x: 0 , y: -1}
+                    break
+                case 'ArrowDown':
+                    if (lastDirection.y !== 0) break
+                    direction = { x: 0 , y: 1}
+                    break
+                case 'ArrowRight':
+                    if (lastDirection.x !== 0) break
+                    direction = { x: 1 , y: 0}
+                    break
+                case 'ArrowLeft':
+                    if (lastDirection.x !== 0) break
+                    direction = { x: -1 , y: 0}
+                    break
+            
+            }
+        }
+
+    }
