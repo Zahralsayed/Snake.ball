@@ -86,6 +86,7 @@ function move(){
     if (head.x < 0 || head.x >= rows || head.y < 0 || head.y >= columns ){
         console.log('Game Over!')
         clearInterval(gameInterval);
+        redirect()
     }
    else {
         console.log('Head of the snake is undefined')
@@ -163,6 +164,9 @@ function hightScore(){
 
 }
 
+function redirect(){
+    window.location.href="score.html"
+}
 
 
 

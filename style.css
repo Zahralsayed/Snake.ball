@@ -17,6 +17,21 @@ h1 {
 }
 
 
+#Score{
+    display: flex;
+    border: 1px solid;
+    padding: 0.5%;
+    width: 20%;
+    border-radius: 10%;
+}
+
+#Length{
+    display: flex;
+    border: 1px solid;
+    padding: 0.5%;
+    width: 24%;
+    border-radius: 10%;
+}
 
 
 .SnakeSpace{
