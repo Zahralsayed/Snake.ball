@@ -2,13 +2,14 @@
  const SnakeSpace = document.querySelector('.SnakeSpace');
 
 // Create a grid
-var rows = 10
-var columns = 20
+var rows = 10     // y = rows
+var columns = 20  // x = columns
 
 let lastDirection = {x:0 , y: 0}
 let direction = {x:0, y:0}
 let Started = true
 let gameInterval
+
 
 document.addEventListener("DOMContentLoaded", function() {
     // Get the body element
@@ -34,29 +35,51 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 })
 
-// Create ball 
-const ball = [{x:5, y:5}]
-
-
 // Create Snake 
 const snake = [{x:6, y:9}]
 
-
+// Create ball 
 function generateBall(){
-    const x = Math.floor(Math.random() * rows ) 
-    const y = Math.floor(Math.random() * columns )  
-    return {x, y};
+    const x = Math.floor( Math.random() * columns ) 
+    const y = Math.floor( Math.random() * rows ) 
+   console.log("ball generated") 
+   return {x,y}
 }
 
+let ball = generateBall()
+console.log(ball)
+
+function positionBall(){
+     ball.x = Math.floor( Math.random() * columns ) 
+     ball.y = Math.floor( Math.random() * rows ) 
+    console.log("ball position updated") 
+}
 
 //Start Game 
+const Start = document.getElementById('start')
 function start(){
     Started= true;
+    //Start.addEventListener('click', function(){
         gameInterval = setInterval(()=>{
             move()
             draw(SnakeSpace)
-        }, 100 ) // update every 100ms
+        }, 170 ) // speed of snake 
+
+        console.log("game started")
+   // })
+        
 }
+
+// {x:newSnake.x, y: newSnake.y}
+
+function snakeIncrease(){
+    const newSnake = { ...snake[snake.length - 1] }
+        snake.push(newSnake)
+        console.log("added")
+        console.log(snake.length)
+        let length = document.querySelector('#printLenght').innerText = snake.length -1
+        let Score = document.querySelector('#printScore').innerText = (snake.length - 1) * 10
+    }
 
 // to move the snake from the head of the snake not all element move
 function move(){
@@ -66,13 +89,8 @@ function move(){
         console.error('Snake array is empty')
         return
     }
-
-
-    for( let i = snake.length - 1; i >  0; i--){
-        snake[i] = { ...snake[i- 1] }
-    }
-
     const head = snake[0]
+
     if(head){
        // console.log('Head before move:', head);
         head.x+= direction.x
@@ -83,43 +101,64 @@ function move(){
 
        lastDirection= direction;
   
-    if (head.x < 0 || head.x >= rows || head.y < 0 || head.y >= columns ){
+    if (head.x < 0 || head.x >= columns || head.y < 0 || head.y >= rows ){
         console.log('Game Over!')
         clearInterval(gameInterval);
         redirect()
     }
+    else if (head.x == ball.x && head.y == ball.y){ // to check if the snake catch the ball
+        snakeIncrease()
+        positionBall()
+        //draw(snakeEelement)
+        console.log("catch the ball")
+        console.log(ball);
+
+    }
    else {
+   // snake.unshift(head);
         console.log('Head of the snake is undefined')
 }
-
 }
+
 
 // to add more element to snack whenever the snake catch the ball
 function draw(SnakeSpace){
     // clear the previous 
     SnakeSpace.innerHTML='';
 
-    snake.forEach(segment => {
+        snake.forEach(segment => {
         const snakeEelement = document.createElement('div')
         snakeEelement.style.gridRowStart = segment.y +1
         snakeEelement.style.gridColumnStart = segment.x+1
         snakeEelement.classList.add('snake')
         SnakeSpace.appendChild(snakeEelement)
+
+       /* if (snakeIncrease()){
+            add()
+        }*/
     }) 
 
 
     const ballElement = document.createElement('div')
-    ballElement.style.gridRowStart = ball[0].y+1
-    ballElement.style.gridColumnStart = ball[0].x+1
+    ballElement.style.gridRowStart = ball.y+1
+    ballElement.style.gridColumnStart = ball.x+1
     ballElement.classList.add('ball')
     SnakeSpace.appendChild(ballElement)
 }
 
+/*const Start = document.getElementById('start')
+Start.addEventListener('click', function(){
+    startGame()
+})
+
+function startGame(){
+    start()
+}*/
 
 
 // function keyPress
-function handleKeyPress(event){
-    if (Started){
+function handleKeyPress(event){ 
+   if (Started){
             switch(event.key){
                 case 'ArrowUp':
                     if (lastDirection.y !== 0) break // to move up but can not move down as it is
@@ -142,21 +181,34 @@ function handleKeyPress(event){
         }
 
     }
+    /*
+
+let Start = document.querySelector("#start")
+Start.addEventListener('click', handleClick)
+
+function handleClick(){
+
+}
+*/
+
 
 // KeyPress event listener
-document.addEventListener ('keydown', handleKeyPress)
-// onload start event listener
+document.addEventListener('keydown', handleKeyPress)
+
+
+//onload start event listener
 document.addEventListener('DOMContentLoaded', () => {
     start()
 })
 
-/*console.log(snake)
-console.log(ball)*/
-
-
 function getLastDirection(){
     lastDirection = direction
     return direction
+}
+
+function snakeScore(){
+    let score = snake.length * 10
+    return score
 }
 
 // to save the hightest score
@@ -167,6 +219,9 @@ function hightScore(){
 function redirect(){
     window.location.href="score.html"
 }
+
+
+
 
 
 
