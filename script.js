@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
 })
 
 // Create Snake 
-const snake = [{x:6, y:9}]
+const snake = [{x:6, y:6}]
 
 // Create ball 
 function generateBall(){
@@ -70,11 +70,16 @@ function start(){
         
 }
 
+//Start.addEventListener('click', start)
+
+
 // {x:newSnake.x, y: newSnake.y}
+
+
 
 function snakeIncrease(){
     const newSnake = { ...snake[snake.length - 1] }
-        snake.push(newSnake)
+      const tail =   snake.push(newSnake)
         console.log("added")
         console.log(snake.length)
         let length = document.querySelector('#printLenght').innerText = snake.length -1
@@ -89,7 +94,8 @@ function move(){
         console.error('Snake array is empty')
         return
     }
-    const head = snake[0]
+
+    const head = { ...snake[0] }
 
     if(head){
        // console.log('Head before move:', head);
@@ -100,13 +106,26 @@ function move(){
     }
 
        lastDirection= direction;
-  
+    
+// check collision with walls
     if (head.x < 0 || head.x >= columns || head.y < 0 || head.y >= rows ){
         console.log('Game Over!')
         clearInterval(gameInterval);
-        redirect()
+        redirect();
+        return; 
     }
-    else if (head.x == ball.x && head.y == ball.y){ // to check if the snake catch the ball
+    
+// check collision with itself
+    if (snake.slice(1).some(segment => segment.x === head.x && segment.y === head.y)){
+        console.log('Game Over!, snake touch himself')
+        clearInterval(gameInterval);
+        redirect();
+        return; 
+    }
+     
+    
+// check catch ball  
+    if (head.x == ball.x && head.y == ball.y){ // to check if the snake catch the ball
         snakeIncrease()
         positionBall()
         //draw(snakeEelement)
@@ -115,46 +134,35 @@ function move(){
 
     }
    else {
-   // snake.unshift(head);
-        console.log('Head of the snake is undefined')
+    snake.pop()
+    snake.unshift(head)   // Add the new head to the snake
+    draw(SnakeSpace)
+    console.log('Head of the snake is undefined')
 }
 }
 
 
 // to add more element to snack whenever the snake catch the ball
 function draw(SnakeSpace){
-    // clear the previous 
+// clear the previous 
     SnakeSpace.innerHTML='';
 
-        snake.forEach(segment => {
+// draw snake
+    snake.forEach(segment => {
         const snakeEelement = document.createElement('div')
         snakeEelement.style.gridRowStart = segment.y +1
         snakeEelement.style.gridColumnStart = segment.x+1
         snakeEelement.classList.add('snake')
         SnakeSpace.appendChild(snakeEelement)
+    })
 
-       /* if (snakeIncrease()){
-            add()
-        }*/
-    }) 
-
-
+// draw ball
     const ballElement = document.createElement('div')
     ballElement.style.gridRowStart = ball.y+1
     ballElement.style.gridColumnStart = ball.x+1
     ballElement.classList.add('ball')
     SnakeSpace.appendChild(ballElement)
 }
-
-/*const Start = document.getElementById('start')
-Start.addEventListener('click', function(){
-    startGame()
-})
-
-function startGame(){
-    start()
-}*/
-
 
 // function keyPress
 function handleKeyPress(event){ 
@@ -181,15 +189,17 @@ function handleKeyPress(event){
         }
 
     }
-    /*
+    
 
-let Start = document.querySelector("#start")
-Start.addEventListener('click', handleClick)
+    /*const Start = document.getElementById('start')
+Start.addEventListener('click', function(){
+    startGame()
+})
 
-function handleClick(){
+function startGame(){
+    start()
+}*/
 
-}
-*/
 
 
 // KeyPress event listener

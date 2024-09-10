@@ -1,13 +1,14 @@
 body{
     text-align: center;
-
+    background-color: rgb(33, 34, 72);
 }
 
-h1 {
-    font-family: Arial, Helvetica, sans-serif;
+h1{
+    font-family:'Courier New', Courier, monospace;
     text-align: center;
     font-size: 50px;
     margin-top: 5%;
+    color:  rgb(203, 199, 199);
 }
 
 .top{
@@ -19,20 +20,24 @@ h1 {
 
 #Score{
     display: flex;
-    border: 1px solid;
+    font-family:'Courier New', Courier, monospace;
+    border: 2px solid  rgb(237, 237, 237);;
     padding: 0.5%;
     width: 20%;
     position: relative;
     border-radius: 10%;
+    color:  rgb(203, 199, 199);
 }
 
 #Length{
     display: flex;
-    border: 1px solid;
+    font-family:'Courier New', Courier, monospace;
+    border: 2px solid  rgb(237, 237, 237);;
     padding: 0.5%;
     position: relative;
     width: 24%;
     border-radius: 10%;
+    color:  rgb(203, 199, 199);
 }
 
 #printLenght{
@@ -57,13 +62,14 @@ h1 {
 
 
 button{
+    font-family: 'Courier New', Courier, monospace;
     margin: 1%;
     width: 15%;
-    background-color: darkgray;
-    color: white;
+    background-color: rgb(233, 228, 228);
+    color: rgb(33, 34, 72);
     border: 0;
     height: 30px;
-
+    font-size: 15px;
 }
 
 .grid-item{
@@ -86,9 +92,21 @@ button{
 }
 
 .ball{
-    background-color: rgb(223, 223, 53);
+    background-color: rgb(199, 199, 25);
     border: .25vmin;
     border-radius: 60%;
 
+}
+
+#currentScore{
+    font-size: 20px;
+    font-family:'Courier New', Courier, monospace;
+    color:  rgb(203, 199, 199);
+}
+
+#highestScore{
+    font-size: 20px;
+    font-family:'Courier New', Courier, monospace;
+    color:  rgb(71, 187, 62);
 }
     
