@@ -9,7 +9,9 @@ let lastDirection = {x:0 , y: 0}
 let direction = {x:0, y:0}
 let Started = true
 let gameInterval
-let mySound = new Audio('catch.mp3')
+let catchEffect = new Audio('catch.mp3')
+let gameOver = new Audio('gameOver.mp3')
+
 
 document.addEventListener("DOMContentLoaded", function() {
 // Get the body element
@@ -127,16 +129,23 @@ function move(){
     if (head.x < 0 || head.x >= columns || head.y < 0 || head.y >= rows ){
         console.log('Game Over!')
         clearInterval(gameInterval);
-        redirect();
-        return; 
+        gameOver.play()
+        // add an event listenter too ensure that the redirect is after th sound finished
+        gameOver.addEventListener('ended', function(){
+            redirect()
+        })
     }
     
 // check collision with itself
     if (snake.slice(1).some(segment => segment.x === head.x && segment.y === head.y)){
         console.log('Game Over!, snake touch himself')
         clearInterval(gameInterval);
-        redirect();
-        return; 
+        gameOver.play()
+        // add an event listenter too ensure that the redirect is after th sound finished
+        gameOver.addEventListener('ended', function(){
+            redirect()
+        })
+        return
     }
 
 // touch the barrier
@@ -145,7 +154,11 @@ function move(){
             if (head.x == barr.x && head.y == barr.y){ // to check if the snake touch the barrier
                 console.log('Game Over!, snake touch the barrier')
                 clearInterval(gameInterval)
-                redirect()
+                gameOver.play()
+                // add an event listenter too ensure that the redirect is after th sound finished
+                gameOver.addEventListener('ended', function(){
+                    redirect()
+                })
                 console.log(barr)
     }
     }
@@ -153,7 +166,7 @@ function move(){
 // check catch ball  
     if (head.x == ball.x && head.y == ball.y){ // to check if the snake catch the ball
         snakeIncrease()
-        mySound.play()
+        catchEffect.play()
         positionBall()
         console.log("catch the ball")
         console.log(ball);
