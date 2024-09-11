@@ -8,8 +8,63 @@
 </head>
 <body>
     <h1> Game Over! </h1>
-        <div id="currentScore"> Current Score </div>
-        <div id="highestScore"> Highest Score </div>
+        <div id="currentScore"> Current Score <div id="current"></div></div>
+        <div id="highestScore"> Highest Score <div id="highest"></div></div>
     <button type="submit" onclick="location.href='index.html'"> Play Again </button>
+
+    <script> 
+        // function to display the current score
+        function displayCurrentScore(score) {
+            let storedScore =  localStorage.getItem('score')
+                console.log('Score '+ storedScore)
+                let currentS = document.querySelector('#current')         
+                if (currentS){
+                    document.querySelector('#current').innerHTML=`${storedScore}` 
+                } 
+                else {
+                    document.querySelector('#current').innerHTML='no score available' 
+                }
+        }
+
+        // update the highest score
+        function highestScore(current) {
+            // take the highest score from local storage
+            let highest = localStorage.getItem('highest')
+            if (highest === null) {
+                highest = 0
+            } else {
+                highest = parseInt(highest, 10) // to convert to number
+            }
+
+            // update the highest if the current score is higher
+            if (current > highest) {
+                localStorage.setItem('highest', current)
+                highest = current
+            }
+
+            // display the highest score
+            let highestElement = document.querySelector('#highest')
+            if ( highestElement ) {
+                highestElement.innerHTML = `${highest}`
+                console.log('Highest Score:', highest)
+            } 
+        }
+
+        function updateScore() {
+            let storedScore =  localStorage.getItem('score');
+        // display the current score
+            displayCurrentScore(storedScore)
+        //  highest score
+            highestScore(storedScore)
+        }
+
+        // Initialize score on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // update the score when the page loads
+            updateScore()
+        })
+
+    </script>
+
 </body>
 </html>

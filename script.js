@@ -1,9 +1,9 @@
 // const SnakeSpace = document.getElementsByClassName('SnakeSpace')
- const SnakeSpace = document.querySelector('.SnakeSpace');
+const SnakeSpace = document.querySelector('.SnakeSpace');
 
 // Create a grid
-var rows = 10     // y = rows
-var columns = 20  // x = columns
+let rows = 10     // y = rows
+let columns = 20  // x = columns
 
 let lastDirection = {x:0 , y: 0}
 let direction = {x:0, y:0}
@@ -12,18 +12,14 @@ let gameInterval
 
 
 document.addEventListener("DOMContentLoaded", function() {
-    // Get the body element
-    var body = document.body;
+// Get the body element
+    let body = document.body;
 
-    // Loop to create grid items and append them to the body
-    for (var i = 0; i < rows; i++) {
-        for (var j = 0; j < columns; j++) {
-            var gridItem = document.createElement("div");
+// Loop to create grid items and append them to the body
+    for (let i = 0; i < rows; i++) {
+        for (let j = 0; j < columns; j++) {
+            let gridItem = document.createElement("div");
             gridItem.classList.add("grid-item");
-
-            if ( ( i == 2 ) && ( j >= 8 && j <= 12)){
-                gridItem.classList.add('barrier')
-            }
 
             // Set the position of each grid item
             gridItem.style.left = j * 100 + "px";
@@ -38,15 +34,34 @@ document.addEventListener("DOMContentLoaded", function() {
 // Create Snake 
 const snake = [{x:6, y:6}]
 
+const barrier = [{x:8, y:2 }, {x:8, y:3}, {x:8, y:4}, {x:12, y:7}, {x:13, y:7}]
+
+console.log(snake)
+
+console.log(barrier)
+
+
 // Create ball 
-function generateBall(){
-    const x = Math.floor( Math.random() * columns ) 
-    const y = Math.floor( Math.random() * rows ) 
+function generateBall(columns, rows, barrier){ 
+
+    // function to check whether the generated position is a barrier or not  
+    function isBarrier(x,y){
+        return barrier.some(barr => barr.x === x && barr.y === y)
+    }
+
+    let x, y;
+
+    // generate a rondom position, and check if it's barrier it will generate a new position  
+    do {
+    x = Math.floor( Math.random() * columns ) 
+    y = Math.floor( Math.random() * rows ) 
+    } while (isBarrier(x,y))
+
    console.log("ball generated") 
    return {x,y}
 }
 
-let ball = generateBall()
+let ball = generateBall(columns, rows, barrier)
 console.log(ball)
 
 function positionBall(){
@@ -72,19 +87,20 @@ function start(){
 
 //Start.addEventListener('click', start)
 
-
-// {x:newSnake.x, y: newSnake.y}
-
-
-
 function snakeIncrease(){
     const newSnake = { ...snake[snake.length - 1] }
-      const tail =   snake.push(newSnake)
+        snake.push(newSnake)
         console.log("added")
         console.log(snake.length)
         let length = document.querySelector('#printLenght').innerText = snake.length -1
         let Score = document.querySelector('#printScore').innerText = (snake.length - 1) * 10
+        localStorage.setItem('score', Score)
+
     }
+
+let currentScore = (snake.length - 1) * 10
+ 
+// saving score to localstorage
 
 // to move the snake from the head of the snake not all element move
 function move(){
@@ -122,13 +138,22 @@ function move(){
         redirect();
         return; 
     }
-     
+
+// touch the barrier
+    for(let i=0; i<barrier.length; i++){
+        let barr = barrier[i]
+            if (head.x == barr.x && head.y == barr.y){ // to check if the snake touch the barrier
+                console.log('Game Over!, snake touch the barrier')
+                clearInterval(gameInterval)
+                redirect()
+                console.log(barr)
+    }
+    }
     
 // check catch ball  
     if (head.x == ball.x && head.y == ball.y){ // to check if the snake catch the ball
         snakeIncrease()
         positionBall()
-        //draw(snakeEelement)
         console.log("catch the ball")
         console.log(ball);
 
@@ -162,7 +187,18 @@ function draw(SnakeSpace){
     ballElement.style.gridColumnStart = ball.x+1
     ballElement.classList.add('ball')
     SnakeSpace.appendChild(ballElement)
+
+// draw barrier
+
+barrier.forEach(barriers => {
+    const barrierElement = document.createElement('div')
+    barrierElement.style.gridRowStart = barriers.y+1
+    barrierElement.style.gridColumnStart = barriers.x+1
+    barrierElement.classList.add('barrier')
+    SnakeSpace.appendChild(barrierElement)
+})    
 }
+
 
 // function keyPress
 function handleKeyPress(event){ 
@@ -201,10 +237,8 @@ function startGame(){
 }*/
 
 
-
 // KeyPress event listener
 document.addEventListener('keydown', handleKeyPress)
-
 
 //onload start event listener
 document.addEventListener('DOMContentLoaded', () => {
@@ -221,29 +255,7 @@ function snakeScore(){
     return score
 }
 
-// to save the hightest score
-function hightScore(){
-
-}
 
 function redirect(){
     window.location.href="score.html"
 }
-
-
-
-
-
-
-// create ball
-    // grid-row and grid-column will help to position the the ball (css) , in js can added by set position
-       // using math rondom
-
-        // grid-row: 1 / 3  will start at 1 and end at 3rd row
-
-
-// Move snake
-   // for moving i have to do -- and ++ for i and j 
-
-// Increase length 
-// Increase Score */
