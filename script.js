@@ -9,7 +9,7 @@ let lastDirection = {x:0 , y: 0}
 let direction = {x:0, y:0}
 let Started = true
 let gameInterval
-
+let mySound = new Audio('catch.mp3')
 
 document.addEventListener("DOMContentLoaded", function() {
 // Get the body element
@@ -153,6 +153,7 @@ function move(){
 // check catch ball  
     if (head.x == ball.x && head.y == ball.y){ // to check if the snake catch the ball
         snakeIncrease()
+        mySound.play()
         positionBall()
         console.log("catch the ball")
         console.log(ball);
