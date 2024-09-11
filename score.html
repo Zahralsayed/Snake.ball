@@ -4,19 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Score</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ribeye+Marrow&display=swap" rel="stylesheet">
+    <title>Score Page</title>
 </head>
 <body>
-    <h1> Game Over! </h1>
-        <div id="currentScore"> Current Score <div id="current"></div></div>
+    <h1><div id="message"> </div></h1>
+    <div class="style">
+        <div id="currentScore"> Current Score <div id="current"></div></div> </br>
         <div id="highestScore"> Highest Score <div id="highest"></div></div>
+    </div>
     <button type="submit" onclick="location.href='index.html'"> Play Again </button>
+
 
     <script> 
         // function to display the current score
         function displayCurrentScore(score) {
             let storedScore =  localStorage.getItem('score')
-                console.log('Score '+ storedScore)
                 let currentS = document.querySelector('#current')         
                 if (currentS){
                     document.querySelector('#current').innerHTML=`${storedScore}` 
@@ -24,6 +27,13 @@
                 else {
                     document.querySelector('#current').innerHTML='no score available' 
                 }
+                if(storedScore > 20 ){
+                    document.querySelector('#message').innerHTML='Great! Try again'
+                }
+                 else {
+                    document.querySelector('#message').innerHTML='Game Over!'
+
+        }
         }
 
         // update the highest score
@@ -46,7 +56,6 @@
             let highestElement = document.querySelector('#highest')
             if ( highestElement ) {
                 highestElement.innerHTML = `${highest}`
-                console.log('Highest Score:', highest)
             } 
         }
 
@@ -63,7 +72,6 @@
             // update the score when the page loads
             updateScore()
         })
-
     </script>
 
 </body>

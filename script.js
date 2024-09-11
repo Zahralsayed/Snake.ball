@@ -1,5 +1,4 @@
-// const SnakeSpace = document.getElementsByClassName('SnakeSpace')
-const SnakeSpace = document.querySelector('.SnakeSpace');
+const snakeSpace = document.querySelector('.snakeSpace');
 
 // Create a grid
 let rows = 10     // y = rows
@@ -21,14 +20,14 @@ document.addEventListener("DOMContentLoaded", function() {
     for (let i = 0; i < rows; i++) {
         for (let j = 0; j < columns; j++) {
             let gridItem = document.createElement("div");
-            gridItem.classList.add("grid-item");
+            gridItem.classList.add("gridItem");
 
             // Set the position of each grid item
             gridItem.style.left = j * 100 + "px";
             gridItem.style.top = i * 100 + "px";
 
             // Append the grid item to the body
-            SnakeSpace.appendChild(gridItem);
+            snakeSpace.appendChild(gridItem);
         }
     }
 })
@@ -36,12 +35,8 @@ document.addEventListener("DOMContentLoaded", function() {
 // Create Snake 
 const snake = [{x:6, y:6}]
 
+// create barrier
 const barrier = [{x:8, y:2 }, {x:8, y:3}, {x:8, y:4}, {x:12, y:7}, {x:13, y:7}]
-
-console.log(snake)
-
-console.log(barrier)
-
 
 // Create ball 
 function generateBall(columns, rows, barrier){ 
@@ -58,42 +53,29 @@ function generateBall(columns, rows, barrier){
     x = Math.floor( Math.random() * columns ) 
     y = Math.floor( Math.random() * rows ) 
     } while (isBarrier(x,y))
-
-   console.log("ball generated") 
    return {x,y}
 }
 
 let ball = generateBall(columns, rows, barrier)
-console.log(ball)
 
 function positionBall(){
      ball.x = Math.floor( Math.random() * columns ) 
      ball.y = Math.floor( Math.random() * rows ) 
-    console.log("ball position updated") 
 }
 
 //Start Game 
-const Start = document.getElementById('start')
+//const Start = document.getElementById('start')
 function start(){
     Started= true;
-    //Start.addEventListener('click', function(){
         gameInterval = setInterval(()=>{
             move()
-            draw(SnakeSpace)
-        }, 170 ) // speed of snake 
-
-        console.log("game started")
-   // })
-        
+            draw(snakeSpace)
+        }, 150 ) // like speed of snake  
 }
-
-//Start.addEventListener('click', start)
 
 function snakeIncrease(){
     const newSnake = { ...snake[snake.length - 1] }
         snake.push(newSnake)
-        console.log("added")
-        console.log(snake.length)
         let length = document.querySelector('#printLenght').innerText = snake.length -1
         let Score = document.querySelector('#printScore').innerText = (snake.length - 1) * 10
         localStorage.setItem('score', Score)
@@ -106,8 +88,6 @@ let currentScore = (snake.length - 1) * 10
 
 // to move the snake from the head of the snake not all element move
 function move(){
-    //console.log('Snake:', snake)
-
     if (snake.length === 0) {
         console.error('Snake array is empty')
         return
@@ -116,18 +96,14 @@ function move(){
     const head = { ...snake[0] }
 
     if(head){
-       // console.log('Head before move:', head);
         head.x+= direction.x
         head.y+= direction.y
-        //console.log('Head after move:', head);
-
     }
 
        lastDirection= direction;
     
 // check collision with walls
     if (head.x < 0 || head.x >= columns || head.y < 0 || head.y >= rows ){
-        console.log('Game Over!')
         clearInterval(gameInterval);
         gameOver.play()
         // add an event listenter too ensure that the redirect is after th sound finished
@@ -138,7 +114,6 @@ function move(){
     
 // check collision with itself
     if (snake.slice(1).some(segment => segment.x === head.x && segment.y === head.y)){
-        console.log('Game Over!, snake touch himself')
         clearInterval(gameInterval);
         gameOver.play()
         // add an event listenter too ensure that the redirect is after th sound finished
@@ -152,14 +127,12 @@ function move(){
     for(let i=0; i<barrier.length; i++){
         let barr = barrier[i]
             if (head.x == barr.x && head.y == barr.y){ // to check if the snake touch the barrier
-                console.log('Game Over!, snake touch the barrier')
                 clearInterval(gameInterval)
                 gameOver.play()
                 // add an event listenter too ensure that the redirect is after th sound finished
                 gameOver.addEventListener('ended', function(){
                     redirect()
                 })
-                console.log(barr)
     }
     }
     
@@ -168,23 +141,19 @@ function move(){
         snakeIncrease()
         catchEffect.play()
         positionBall()
-        console.log("catch the ball")
-        console.log(ball);
-
     }
    else {
     snake.pop()
     snake.unshift(head)   // Add the new head to the snake
-    draw(SnakeSpace)
-    console.log('Head of the snake is undefined')
+    draw(snakeSpace)
 }
 }
 
 
 // to add more element to snack whenever the snake catch the ball
-function draw(SnakeSpace){
+function draw(snakeSpace){
 // clear the previous 
-    SnakeSpace.innerHTML='';
+    snakeSpace.innerHTML='';
 
 // draw snake
     snake.forEach(segment => {
@@ -192,7 +161,7 @@ function draw(SnakeSpace){
         snakeEelement.style.gridRowStart = segment.y +1
         snakeEelement.style.gridColumnStart = segment.x+1
         snakeEelement.classList.add('snake')
-        SnakeSpace.appendChild(snakeEelement)
+        snakeSpace.appendChild(snakeEelement)
     })
 
 // draw ball
@@ -200,7 +169,7 @@ function draw(SnakeSpace){
     ballElement.style.gridRowStart = ball.y+1
     ballElement.style.gridColumnStart = ball.x+1
     ballElement.classList.add('ball')
-    SnakeSpace.appendChild(ballElement)
+    snakeSpace.appendChild(ballElement)
 
 // draw barrier
 
@@ -209,7 +178,7 @@ barrier.forEach(barriers => {
     barrierElement.style.gridRowStart = barriers.y+1
     barrierElement.style.gridColumnStart = barriers.x+1
     barrierElement.classList.add('barrier')
-    SnakeSpace.appendChild(barrierElement)
+    snakeSpace.appendChild(barrierElement)
 })    
 }
 
@@ -239,25 +208,18 @@ function handleKeyPress(event){
         }
 
     }
-    
-
-    /*const Start = document.getElementById('start')
-Start.addEventListener('click', function(){
-    startGame()
-})
-
-function startGame(){
-    start()
-}*/
-
 
 // KeyPress event listener
 document.addEventListener('keydown', handleKeyPress)
+document.addEventListener('DOMContentLoaded', start)
 
-//onload start event listener
-document.addEventListener('DOMContentLoaded', () => {
-    start()
-})
+// start event listener
+/*document.addEventListener('DOMContentLoaded', (event) => {
+    const el = document.getElementById('start')
+    if (el){
+        el.addEventListener('click', start)
+    }
+})*/
 
 function getLastDirection(){
     lastDirection = direction

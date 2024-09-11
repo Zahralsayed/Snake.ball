@@ -1,14 +1,26 @@
 body{
     text-align: center;
+    justify-content: center; 
     background-color: rgb(33, 34, 72);
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    
+    margin: auto;
 }
 
 h1{
-    font-family:'Courier New', Courier, monospace;
+    font-family: "Ribeye Marrow", serif;
     text-align: center;
-    font-size: 12vh;
-    margin-top: 5%;
+    font-size: 10vh;
     color:  rgb(203, 199, 199);
+    text-shadow: 0 0 10px  rgba(16, 16, 20, 0.786);
+}
+
+h1 #message{
+    font-size: 10vh;
 }
 
 .top{
@@ -18,14 +30,22 @@ h1{
 }
 
 .style{
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-
+p{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-style: italic;
+    text-align: center;
+    font-size: 5vh;
+    color:  rgb(107, 167, 99);
+}
 
 #Score{
     display: flex;
-    font-family:'Courier New', Courier, monospace;
+    font-family: "Ribeye Marrow", serif;
     border: 2px solid  rgb(237, 237, 237);;
     padding: 0.5%;
     width: 20%;
@@ -37,7 +57,7 @@ h1{
 
 #Length{
     display: flex;
-    font-family:'Courier New', Courier, monospace;
+    font-family: "Ribeye Marrow", serif;
     border: 2px solid  rgb(237, 237, 237);;
     padding: 0.5%;
     position: relative;
@@ -48,17 +68,19 @@ h1{
 }
 
 #printLenght{
-    position:absolute; right:0
+    position:absolute; 
+    right:0;
 }
 
 #printScore{
-    position:absolute; right:0
+    position:absolute; 
+    right:0;
 }
 
 
-.SnakeSpace{
+.snakeSpace{
     margin: 2% 13%;
-    height: 55vh;
+    height: 60vh;
     display: grid;
     position: relative;
     grid-template-columns:  repeat(20, 1fr);
@@ -70,20 +92,19 @@ h1{
 
 
 button{
-    font-family: 'Courier New', Courier, monospace;
     margin: 1%;
-    width: 15%;
+    width: 20%;
     background-color: rgb(233, 228, 228);
     color: rgb(33, 34, 72);
     border: 0;
-    height: 30px;
-    font-size: 15px;
+    height: 50px;
+    font-size: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px  rgba(16, 16, 20, 0.786);
-
+    font-family: "Ribeye Marrow", serif;
 }
 
-.grid-item{
+.gridItem{
     position: absolute;
     border: 1px solid;
     box-sizing: border-box;
@@ -112,22 +133,48 @@ button{
     box-shadow: 0 0 7px rgba(227, 227, 93, 0.579);
 }
 
-#currentScore{
-    font-size: 20px;
-    font-family:'Courier New', Courier, monospace;
-    color:  rgb(203, 199, 199);
-    
-}
+
 
 #highestScore{
-    font-size: 20px;
-    font-family:'Courier New', Courier, monospace;
-    color:  rgb(71, 187, 62);
+    display: flex;
+    position: relative;
+    align-items: center;
+    margin: 1%;
+    width: 30%;
+    padding: 2px;
+    background-color: rgb(233, 228, 228);
+    height: 50px;
+    font-size: 18px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px  rgba(16, 16, 20, 0.786);
+    font-family: "Ribeye Marrow", serif;
+    color:  rgb(16, 148, 6);
 }
     
+#currentScore{
+    display: flex;
+    position: relative;
+    align-items: center;
+    margin: 1%;
+    width: 30%;
+    padding: 2px;
+    background-color: rgb(233, 228, 228);
+    height: 50px;
+    font-size: 18px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px  rgba(16, 16, 20, 0.786);
+    font-family: "Ribeye Marrow", serif;
+    color:   rgb(33, 34, 72);
+}
+
 #current{
+    position:absolute; 
+    right:0;
+    padding: 10px;
 }
 
 #highest{
-
+    position:absolute; 
+    right:0;
+    padding: 10px;
 }
