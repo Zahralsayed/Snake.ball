@@ -1,6 +1,7 @@
 body{
     text-align: center;
     justify-content: center; 
+    align-items: center;
     background-color: rgb(33, 34, 72);
     position: absolute;
     top:0;
@@ -9,6 +10,10 @@ body{
     right: 0;
     
     margin: auto;
+}
+
+.centerPage{
+    top:25%;
 }
 
 h1{

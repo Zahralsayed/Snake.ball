@@ -45,7 +45,6 @@ function generateBall(columns, rows, barrier){
     function isBarrier(x,y){
         return barrier.some(barr => barr.x === x && barr.y === y)
     }
-
     let x, y;
 
     // generate a rondom position, and check if it's barrier it will generate a new position  
@@ -64,7 +63,6 @@ function positionBall(){
 }
 
 //Start Game 
-//const Start = document.getElementById('start')
 function start(){
     Started= true;
         gameInterval = setInterval(()=>{
@@ -78,13 +76,9 @@ function snakeIncrease(){
         snake.push(newSnake)
         let length = document.querySelector('#printLenght').innerText = snake.length -1
         let Score = document.querySelector('#printScore').innerText = (snake.length - 1) * 10
-        localStorage.setItem('score', Score)
-
+        localStorage.setItem('score', Score) // saving score to localstorage
     }
-
-let currentScore = (snake.length - 1) * 10
  
-// saving score to localstorage
 
 // to move the snake from the head of the snake not all element move
 function move(){
@@ -99,14 +93,13 @@ function move(){
         head.x+= direction.x
         head.y+= direction.y
     }
-
-       lastDirection= direction;
+    lastDirection= direction;
     
 // check collision with walls
     if (head.x < 0 || head.x >= columns || head.y < 0 || head.y >= rows ){
-        clearInterval(gameInterval);
+        clearInterval(gameInterval); // will make the game over
         gameOver.play()
-        // add an event listenter too ensure that the redirect is after th sound finished
+        // add an event listener to ensure that the redirect is after the sound finished
         gameOver.addEventListener('ended', function(){
             redirect()
         })
@@ -116,27 +109,27 @@ function move(){
     if (snake.slice(1).some(segment => segment.x === head.x && segment.y === head.y)){
         clearInterval(gameInterval);
         gameOver.play()
-        // add an event listenter too ensure that the redirect is after th sound finished
+        // add an event listener to ensure that the redirect is after the sound finished
         gameOver.addEventListener('ended', function(){
             redirect()
         })
         return
     }
 
-// touch the barrier
+// check collision with the barrier
     for(let i=0; i<barrier.length; i++){
         let barr = barrier[i]
             if (head.x == barr.x && head.y == barr.y){ // to check if the snake touch the barrier
                 clearInterval(gameInterval)
                 gameOver.play()
-                // add an event listenter too ensure that the redirect is after th sound finished
+            // add an event listener to ensure that the redirect is after the sound finished
                 gameOver.addEventListener('ended', function(){
-                    redirect()
-                })
+                            redirect()
+                        })
     }
     }
     
-// check catch ball  
+// check if snake catch ball  
     if (head.x == ball.x && head.y == ball.y){ // to check if the snake catch the ball
         snakeIncrease()
         catchEffect.play()
@@ -172,7 +165,6 @@ function draw(snakeSpace){
     snakeSpace.appendChild(ballElement)
 
 // draw barrier
-
 barrier.forEach(barriers => {
     const barrierElement = document.createElement('div')
     barrierElement.style.gridRowStart = barriers.y+1
@@ -211,15 +203,8 @@ function handleKeyPress(event){
 
 // KeyPress event listener
 document.addEventListener('keydown', handleKeyPress)
+// start game enent listener
 document.addEventListener('DOMContentLoaded', start)
-
-// start event listener
-/*document.addEventListener('DOMContentLoaded', (event) => {
-    const el = document.getElementById('start')
-    if (el){
-        el.addEventListener('click', start)
-    }
-})*/
 
 function getLastDirection(){
     lastDirection = direction
