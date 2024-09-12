@@ -28,13 +28,14 @@
 ### ***Sceeenshoots***
 
 ##### First Page, click start to start the game
-(https://imgur.com/dmpOSi4)
+![index ](https://github.com/user-attachments/assets/e66e4597-4139-4f2a-bb99-1f400c5eed44)
 
 ##### Second Page, game page - use the Arrow key to move
-(https://imgur.com/ibjzpKY)
+![start](C:\Users\Lenovo\GA\projects\snake.Ball\start page.png)
+
 
 ##### When Game Over, it will redirect to score page that will show your score and the highest score 
-(https://imgur.com/y9e7SJu)
+![score](C:\Users\Lenovo\GA\projects\snake.Ball\score page.png)
 
 ***
 ### ***Future Updates***
