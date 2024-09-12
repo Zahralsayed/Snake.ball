@@ -30,12 +30,14 @@
 ##### First Page, click start to start the game
 ![index ](https://github.com/user-attachments/assets/e66e4597-4139-4f2a-bb99-1f400c5eed44)
 
+
+
 ##### Second Page, game page - use the Arrow key to move
-![start](C:\Users\Lenovo\GA\projects\snake.Ball\start page.png)
+![start page](https://github.com/user-attachments/assets/4d4eda60-0a09-4c79-9a61-b93f6f3cafdb)
 
 
 ##### When Game Over, it will redirect to score page that will show your score and the highest score 
-![score](C:\Users\Lenovo\GA\projects\snake.Ball\score page.png)
+![score page](https://github.com/user-attachments/assets/dfaa6860-85cb-45e4-95bf-ce755cc06ea6)
 
 ***
 ### ***Future Updates***
