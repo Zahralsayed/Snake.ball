@@ -28,13 +28,13 @@
 ### ***Sceeenshoots***
 
 ##### First Page, click start to start the game
-![indexPage](https://imgur.com/dmpOSi4)
+(https://imgur.com/dmpOSi4)
 
 ##### Second Page, game page - use the Arrow key to move
-![GamePage](https://imgur.com/ibjzpKY)
+(https://imgur.com/ibjzpKY)
 
 ##### When Game Over, it will redirect to score page that will show your score and the highest score 
-![ScorePage](https://imgur.com/y9e7SJu)
+(https://imgur.com/y9e7SJu)
 
 ***
 ### ***Future Updates***
