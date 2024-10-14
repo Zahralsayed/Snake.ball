@@ -2,7 +2,7 @@
 
 ## Date: 09/05/2024
 
-### By: Zahra'a Sayed Jaffer
+### By: Zahraa Sayed Jaffer
 
 #### [Website](https://deeply-discovery.surge.sh/) | [GitHub](https://github.com/Zahralsayed/Snake.ball) | 
 ***
